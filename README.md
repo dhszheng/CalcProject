@@ -3,9 +3,13 @@
 
 ## compile parser library 
 
-    `javac MathEvaluator.java`
+```
+javac MathEvaluator.java
+```
+should create three .class files 
 
 ## run the parser to get input equation 
 
-    `java MathParser.java`
-
+```
+java MathParser.java
+```
