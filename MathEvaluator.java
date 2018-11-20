@@ -1,6 +1,6 @@
- //package com.primalworld.math;
+//package com.primalworld.math;
+//package geometry2D;
 
-package geometry2D;
 import java.util.HashMap;
 import java.lang.Double;
 
