@@ -23,7 +23,7 @@ public class MathEvaluator
 {
    	protected static 	Operator[] 	operators 	= null;
 	private 			Node 		node       	= null;
-	public 			String  	expression 	= null; // make available to cartesianFrame to display equation on final GUI
+	public 			    String  	expression 	= null; // make available to cartesianFrame to display equation on final GUI
     private 			HashMap	 	variables  	= new HashMap();
 
     /***
@@ -77,7 +77,7 @@ public class MathEvaluator
      */
     public void addVariable(String v, double val)
     {
-		addVariable(v, new Double(val));
+		addVariable(v, Double.valueOf(val));
     }
 
     /***
@@ -158,36 +158,32 @@ public class MathEvaluator
         String op 	= o.getOperator();
         Double res 	= null;
 
-        if  	 ( "+".equals(op) ) 	res = new Double( f1.doubleValue() + f2.doubleValue() );
-        else if  ( "-".equals(op) ) 	res = new Double( f1.doubleValue() - f2.doubleValue() );
-        else if  ( "*".equals(op) ) 	res = new Double( f1.doubleValue() * f2.doubleValue() );
-        else if  ( "/".equals(op) )  	res = new Double( f1.doubleValue() / f2.doubleValue() );
-        else if  ( "^".equals(op) )  	res = new Double( Math.pow(f1.doubleValue(), f2.doubleValue()) );
-        else if  ( "%".equals(op) )  	res = new Double( f1.doubleValue() % f2.doubleValue() );
-        else if  ( "&".equals(op) )  	res = new Double( f1.doubleValue() + f2.doubleValue() ); // todo
-        else if  ( "|".equals(op) )  	res = new Double( f1.doubleValue() + f2.doubleValue() ); // todo
-        else if  ( "cos".equals(op) )  	res = new Double( Math.cos(f1.doubleValue()) );
-        else if  ( "sin".equals(op) )  	res = new Double( Math.sin(f1.doubleValue()) );
-        else if  ( "tan".equals(op) )  	res = new Double( Math.tan(f1.doubleValue()) );
-        else if  ( "acos".equals(op) )  res = new Double( Math.acos(f1.doubleValue()) );
-        else if  ( "asin".equals(op) )  res = new Double( Math.asin(f1.doubleValue()) );
-        else if  ( "atan".equals(op) )  res = new Double( Math.atan(f1.doubleValue()) );
-        else if  ( "sqr".equals(op) )  	res = new Double( f1.doubleValue() * f1.doubleValue() );
-        else if  ( "sqrt".equals(op) )  res = new Double( Math.sqrt(f1.doubleValue()) );
-      
-        else if  ( "log".equals(op) )  	res = new Double( Math.log10(f1.doubleValue()) );// returns base 10 log
-        else if  ( "ln".equals(op) )  	res = new Double( Math.log(f1.doubleValue()) );// returns base e log -- natural log
-       
-
-        
-        else if  ( "min".equals(op) )  	res = new Double( Math.min(f1.doubleValue(), f2.doubleValue()) );
-        else if  ( "max".equals(op) )  	res = new Double( Math.max(f1.doubleValue(), f2.doubleValue()) );
-        else if  ( "exp".equals(op) )  	res = new Double( Math.exp(f1.doubleValue()) );
-        else if  ( "floor".equals(op) ) res = new Double( Math.floor(f1.doubleValue()) );
-        else if  ( "ceil".equals(op) )  res = new Double( Math.ceil(f1.doubleValue()) );
-        else if  ( "abs".equals(op) )  	res = new Double( Math.abs(f1.doubleValue()) );
-        else if  ( "neg".equals(op) )  	res = new Double( - f1.doubleValue() );
-        else if  ( "rnd".equals(op) ) 	res = new Double( Math.random() * f1.doubleValue() );
+        if  	 ( "+".equals(op) ) 	res = f1 + f2;
+        else if  ( "-".equals(op) ) 	res = f1 - f2;
+        else if  ( "*".equals(op) ) 	res = f1 * f2;
+        else if  ( "/".equals(op) )  	res = f1 / f2;
+        else if  ( "^".equals(op) )  	res = Math.pow(f1, f2 );
+        else if  ( "%".equals(op) )  	res = f1 % f2;
+        else if  ( "&".equals(op) )  	res = f1 + f2; // todo
+        else if  ( "|".equals(op) )  	res = f1 + f2; // todo
+        else if  ( "cos".equals(op) )  	res = Math.cos(f1);
+        else if  ( "sin".equals(op) )  	res = Math.sin(f1);
+        else if  ( "tan".equals(op) )  	res = Math.tan(f1);
+        else if  ( "acos".equals(op) )  res = Math.acos(f1);
+        else if  ( "asin".equals(op) )  res = Math.asin(f1);
+        else if  ( "atan".equals(op) )  res = Math.atan(f1);
+        else if  ( "sqr".equals(op) )  	res = f1 * f1;
+        else if  ( "sqrt".equals(op) )  res = Math.sqrt(f1);
+        else if  ( "log".equals(op) )  	res = Math.log10(f1);// returns base 10 log
+        else if  ( "ln".equals(op) )  	res = Math.log(f1);// returns base e log -- natural log
+        else if  ( "min".equals(op) )  	res = Math.min(f1, f2);
+        else if  ( "max".equals(op) )  	res = Math.max(f1, f2);
+        else if  ( "exp".equals(op) )  	res = Math.exp(f1);
+        else if  ( "floor".equals(op) ) res = Math.floor(f1);
+        else if  ( "ceil".equals(op) )  res = Math.ceil(f1);
+        else if  ( "abs".equals(op) )  	res = Math.abs(f1);
+        else if  ( "neg".equals(op) )  	res = - f1;
+        else if  ( "rnd".equals(op) ) 	res = Math.random() * f1;
         
 
         return res;
@@ -239,7 +235,7 @@ public class MathEvaluator
         Double res = null;
         try
         {
-            res = new Double(Double.parseDouble(s));
+            res = Double.valueOf(s);
         }
         catch(Exception e)
         {
@@ -287,6 +283,7 @@ public class MathEvaluator
 			return priority;
         }
     }
+
 
     protected class Node
     {
